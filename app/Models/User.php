@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
     ];
@@ -32,6 +32,15 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+
+    /**
+     set mutator
+     password bcrypt()
+      */
+  public function setPasswordAttribute($textPassword){
+      $this.$this->attributes['password']= bcrypt($textPassword);
+  }
 
     /**
      * The attributes that should be cast.
