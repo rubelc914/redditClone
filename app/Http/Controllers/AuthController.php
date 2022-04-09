@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
@@ -38,6 +39,15 @@ class AuthController extends Controller
     return[
         'message'=>'Successfully logout'
     ];
+    }
+
+    public function updateProfile(UpdateProfileRequest $request){
+
+        auth()->user()->update($request->only('username','email'));
+
+        return [
+            'message'=>'Update Profile Successfully'
+        ];
     }
 
 }
